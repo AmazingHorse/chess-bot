@@ -4,6 +4,7 @@
   "description": "discord bot that creates a chess game in text channels for users to play",
   "main": "index.js",
   "dependencies": {
+    "chess.js": "^0.10.2",
     "discord.js": "^10.0.1"
   },
   "devDependencies": {},
