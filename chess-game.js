@@ -1,13 +1,29 @@
-var Chess = require('chess.js');
+'use strict';
 
-function chessGame() {
-  this.chess = new Chess();
-  this.board = chess.ascii();
-}
+const chess = new require('chess.js').Chess();
 
-chessGame.prototype.respond = function (args) {
-  let [cmd, ..otherArgs] = message.content.split(" ").slice(1);
-  if (cmd === "show") {
-    return this.board;    
-  }
-}
+const Chessboard = {
+
+    chess,
+    board: chess.ascii(),
+    white_king: '\u2654',
+    black_king: '\u265A',
+    fen: chess.fen(),
+
+    respond: (message) => {
+        return new Promise((resolve) => {
+            let cmd = message.split(" ").slice(1);
+            console.log("command: " + cmd);
+            if (cmd == "show") {
+                //console.log(Chessboard.some_ascii);
+                // resolve(Chessboard.black_king);
+                resolve(Chessboard.board);
+            }
+            else {
+                resolve(Chessboard.white_king);
+            }
+      });
+    }
+};
+
+module.exports = Chessboard;
